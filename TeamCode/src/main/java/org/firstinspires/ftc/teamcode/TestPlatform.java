@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.NonOpmodes.Hardware;
 import org.firstinspires.ftc.teamcode.NonOpmodes.PIDMotor;
 import org.firstinspires.ftc.teamcode.NonOpmodes.UtilGamepad;
+import org.openftc.easyopencv.OpenCvCamera;
 
 
 @TeleOp(name="TestPlatform")
@@ -18,6 +19,7 @@ public class TestPlatform extends OpMode {
     Hardware hardware = new Hardware();
     UtilGamepad gamepad = new UtilGamepad();
 
+    OpenCvCamera webcam;
     PIDMotor customMotor;
 
     double targetPosition;
@@ -32,6 +34,7 @@ public class TestPlatform extends OpMode {
         hardware.initHardware(hardwareMap);
 
         customMotor = hardware.customMotor;
+        webcam = hardware.webcam;
 
         dashboard = FtcDashboard.getInstance();
         dashboard.setTelemetryTransmissionInterval(25);
@@ -52,7 +55,7 @@ public class TestPlatform extends OpMode {
             targetPosition = TARGET_POS;
 
         }
-        else if (gamepad.toggleA() == false){
+        else if (!gamepad.toggleA()){
             customMotor.runToPosition(TARGET_POS_2);
             targetPosition = TARGET_POS_2;
         }
