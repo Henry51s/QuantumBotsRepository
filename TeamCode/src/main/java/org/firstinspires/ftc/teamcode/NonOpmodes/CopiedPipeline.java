@@ -21,6 +21,8 @@ public class CopiedPipeline extends OpenCvPipeline {
     private Point topLeft1 = new Point(10, 0), bottomRight1 = new Point(40, 20);
     private Point topLeft2 = new Point(10, 0), bottomRight2 = new Point(40, 20);
 
+    double w1, w2;
+
 
     @Override
     public Mat processFrame(Mat input) {
@@ -32,7 +34,7 @@ public class CopiedPipeline extends OpenCvPipeline {
         // Scan both rectangle regions, keeping track of how many
         // pixels meet the threshold value, indicated by the color white
         // in the binary image
-        double w1 = 0, w2 = 0;
+
         // process the pixel value for each rectangle  (255 = W, 0 = B)
         for (int i = (int) topLeft1.x; i <= bottomRight1.x; i++) {
             for (int j = (int) topLeft1.y; j <= bottomRight1.y; j++) {

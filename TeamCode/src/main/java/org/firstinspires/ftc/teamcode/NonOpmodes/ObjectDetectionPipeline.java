@@ -66,6 +66,7 @@ public class ObjectDetectionPipeline extends OpenCvPipeline {
         edges.release();
         thresh.release();
         finalMask.release();
+
         return input;
     }
 }

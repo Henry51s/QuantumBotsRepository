@@ -8,6 +8,8 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.stream.CameraStreamSource;
+import org.firstinspires.ftc.teamcode.NonOpmodes.CVMaster;
 import org.firstinspires.ftc.teamcode.NonOpmodes.CopiedPipeline;
 import org.firstinspires.ftc.teamcode.NonOpmodes.Hardware;
 import org.firstinspires.ftc.teamcode.NonOpmodes.PIDMotor;
@@ -21,18 +23,19 @@ public class TestPlatform extends OpMode {
     Hardware hardware = new Hardware();
     UtilGamepad gamepad = new UtilGamepad();
 
-    OpenCvCamera webcam;
+    //OpenCvCamera webcam;
+    CVMaster webcam;
     PIDMotor customMotor;
 
     double targetPosition;
 
     FtcDashboard dashboard;
     TelemetryPacket packet = new TelemetryPacket();
-    CopiedPipeline pipeline;
+    CopiedPipeline pipeline = new CopiedPipeline();
 
     @Override
     public void init() {
-        pipeline = new CopiedPipeline();
+        //pipeline = new CopiedPipeline();
         gamepad.initGamepad(gamepad1);
         hardware.initHardware(hardwareMap);
 
@@ -41,7 +44,7 @@ public class TestPlatform extends OpMode {
 
         dashboard = FtcDashboard.getInstance();
         dashboard.setTelemetryTransmissionInterval(25);
-        dashboard.startCameraStream(webcam, 5);
+        dashboard.startCameraStream((CameraStreamSource) webcam, 5);
 
     }
 

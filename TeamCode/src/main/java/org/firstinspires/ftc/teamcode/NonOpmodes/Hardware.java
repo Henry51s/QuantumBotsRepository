@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.checkerframework.checker.units.qual.C;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.NonOpmodes.PIDMotor;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -17,13 +18,15 @@ import java.util.List;
 
 public class Hardware{
 
-    //Camera---------------------
-    int xWidth = 800;
+    //Webcam---------------------
+    /*int xWidth = 800;
     int yWidth = 448;
 
     public OpenCvCamera webcam;
-    //public ObjectDetectionPipeline pipeline;
-    public CopiedPipeline pipeline;
+    //public ObjectDetectionPipeline pipeline = new ObjectDetectionPipeline();
+    public CopiedPipeline pipeline = new CopiedPipeline();
+    */
+    public CVMaster webcam;
     //---------------------------
 
     //Robot Hardware-------------
@@ -37,7 +40,7 @@ public class Hardware{
 
 
         // ------------------------------Webcam------------------------------------------------
-        int cameraMonitorId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId","id",hardwareMap.appContext.getPackageName());
+        /*int cameraMonitorId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId","id",hardwareMap.appContext.getPackageName());
 
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "webcam"), cameraMonitorId);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -52,6 +55,8 @@ public class Hardware{
             public void onError(int errorCode) {
             }
         });
+         */
+        webcam.initWebcam(hardwareMap);
         //--------------------------------------------------------------------------------------
 
 

@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class PIDMotor {
 
-    DcMotor motor;
+    private DcMotor motor;
 
-    double kP;
-    double kI;
-    double kD;
-    double kF;
+    private double kP;
+    private double kI;
+    private double kD;
+    private double kF;
 
     PIDFController pidf = new PIDFController(kP, kI, kD, kF);
 
