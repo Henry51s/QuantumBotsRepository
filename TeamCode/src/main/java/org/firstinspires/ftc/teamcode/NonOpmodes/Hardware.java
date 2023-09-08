@@ -22,7 +22,8 @@ public class Hardware{
     int yWidth = 448;
 
     public OpenCvCamera webcam;
-    public ObjectDetectionPipeline pipeline;
+    //public ObjectDetectionPipeline pipeline;
+    public CopiedPipeline pipeline;
     //---------------------------
 
     //Robot Hardware-------------
@@ -39,12 +40,11 @@ public class Hardware{
         int cameraMonitorId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId","id",hardwareMap.appContext.getPackageName());
 
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "webcam"), cameraMonitorId);
-        webcam.setPipeline(pipeline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
 
             @Override
             public void onOpened() {
-
+                webcam.setPipeline(pipeline);
                 webcam.startStreaming(xWidth, yWidth, OpenCvCameraRotation.UPRIGHT);
             }
 

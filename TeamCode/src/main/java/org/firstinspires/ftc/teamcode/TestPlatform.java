@@ -3,10 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.teamcode.NonOpmodes.UtilConstants.*;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.canvas.CanvasOp;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.NonOpmodes.CopiedPipeline;
 import org.firstinspires.ftc.teamcode.NonOpmodes.Hardware;
 import org.firstinspires.ftc.teamcode.NonOpmodes.PIDMotor;
 import org.firstinspires.ftc.teamcode.NonOpmodes.UtilGamepad;
@@ -26,10 +28,11 @@ public class TestPlatform extends OpMode {
 
     FtcDashboard dashboard;
     TelemetryPacket packet = new TelemetryPacket();
+    CopiedPipeline pipeline;
 
     @Override
     public void init() {
-
+        pipeline = new CopiedPipeline();
         gamepad.initGamepad(gamepad1);
         hardware.initHardware(hardwareMap);
 
@@ -38,15 +41,20 @@ public class TestPlatform extends OpMode {
 
         dashboard = FtcDashboard.getInstance();
         dashboard.setTelemetryTransmissionInterval(25);
+        dashboard.startCameraStream(webcam, 5);
 
     }
 
     @Override
     public void loop() {
-        telemetry.addData("Toggle State A: ", gamepad.toggleA());
+        /*telemetry.addData("Toggle State A: ", gamepad.toggleA());
         telemetry.addData("Toggle State B: ", gamepad.toggleB());
         telemetry.addData("Toggle State X: ", gamepad.toggleX());
         telemetry.addData("Toggle State Y: ", gamepad.toggleY());
+        */
+        telemetry.addData("Location", pipeline.getLocation());
+
+
 
         customMotor.setCoefficients(kP, kI, kD, kF);
 
@@ -67,5 +75,6 @@ public class TestPlatform extends OpMode {
 
         dashboard.sendTelemetryPacket(packet);
     }
+
 }
 
